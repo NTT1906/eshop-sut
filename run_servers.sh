@@ -1,5 +1,15 @@
 #!/bin/bash
-killall node
-cd /Users/hanhtran/Downloads/EShop/backend && node server.js &
-cd /Users/hanhtran/Downloads/EShop/frontend-web && npm run dev &
-cd /Users/hanhtran/Downloads/EShop/frontend-admin && npm run dev &
+
+# Read setup_guide.md before using this script
+
+
+
+BASE_DIR="$(pwd)"
+
+killall node 2>/dev/null
+
+cd "$BASE_DIR/backend" && node server.js &
+cd "$BASE_DIR/frontend-web" && npm run dev &
+cd "$BASE_DIR/frontend-admin" && npm run dev &
+
+wait

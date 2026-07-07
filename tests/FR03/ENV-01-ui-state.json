@@ -1,0 +1,95 @@
+{
+  "feature": "FR-03 - Forgot Password and Password Reset",
+  "frontendUrl": "http://localhost:5173/forgot-password",
+  "backendUrl": "http://localhost:3000",
+  "generatedUserEmail": "fr03.env.1783414243066@example.com",
+  "checks": [
+    {
+      "name": "Create black-box test account through public register API",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Navigate from step 1 to step 2 after OTP request",
+      "ok": true
+    }
+  ],
+  "step1": {
+    "title": "Quên Mật Khẩu",
+    "controls": [
+      {
+        "index": 1,
+        "tagName": "input",
+        "label": "Nhập Email của bạn",
+        "type": "text",
+        "required": true,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null,
+        "text": ""
+      },
+      {
+        "index": 2,
+        "tagName": "button",
+        "label": "Nhập Email của bạn",
+        "type": "submit",
+        "required": false,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null,
+        "text": "Lấy mã OTP"
+      }
+    ],
+    "screenshot": "tests/FR03/screenshots/ENV-forgot-password-step1.png"
+  },
+  "step2": {
+    "visibleOtpMessage": "Mã OTP của bạn là: 1132",
+    "controls": [
+      {
+        "index": 1,
+        "tagName": "input",
+        "label": "Mã OTP (4 số)",
+        "type": "text",
+        "required": true,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null,
+        "text": ""
+      },
+      {
+        "index": 2,
+        "tagName": "input",
+        "label": "Mật khẩu mới",
+        "type": "password",
+        "required": true,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null,
+        "text": ""
+      },
+      {
+        "index": 3,
+        "tagName": "button",
+        "label": "Mã OTP (4 số)",
+        "type": "submit",
+        "required": false,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null,
+        "text": "Đặt lại mật khẩu"
+      },
+      {
+        "index": 4,
+        "tagName": "button",
+        "label": "Mã OTP (4 số)",
+        "type": "button",
+        "required": false,
+        "minLength": null,
+        "maxLength": null,
+        "pattern": null,
+        "text": "← Quay lại"
+      }
+    ],
+    "screenshot": "tests/FR03/screenshots/ENV-forgot-password-step2.png"
+  }
+}

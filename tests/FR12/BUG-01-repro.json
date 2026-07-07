@@ -1,0 +1,379 @@
+{
+  "feature": "FR-12 - Access Control",
+  "runId": 1783434003154,
+  "createdNormalUser": "fr12.repro.normal.1783434003154@example.com",
+  "adminLoginStatus": 200,
+  "normalLoginStatus": 200,
+  "checks": [
+    {
+      "bugId": "BUG-001",
+      "name": "Normal user token can read admin user list",
+      "result": {
+        "method": "GET",
+        "endpoint": "/admin/users",
+        "status": 200,
+        "ok": true,
+        "body": [
+          {
+            "id": 1,
+            "name": "Admin User",
+            "email": "admin@eshop.com",
+            "role": "admin",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 2,
+            "name": "Test User",
+            "email": "test@eshop.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 3,
+            "name": "FR12 ENV User",
+            "email": "fr12.env.1783432897442@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 4,
+            "name": "FR12 DT Normal",
+            "email": "fr12.dt.normal.1783433819741@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 7,
+            "name": "FR12 Repro Normal",
+            "email": "fr12.repro.normal.1783434003154@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 8,
+            "name": "FR12 Repro Victim",
+            "email": "fr12.repro.victim.1783434003154@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          }
+        ],
+        "bodySummary": "array(6)"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-001",
+      "name": "Normal user token can delete a user through admin endpoint",
+      "result": {
+        "method": "DELETE",
+        "endpoint": "/admin/users/8",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "User deleted"
+        },
+        "bodySummary": "{\"message\":\"User deleted\"}"
+      },
+      "expected": "401 or 403 and victim remains"
+    },
+    {
+      "bugId": "BUG-001",
+      "name": "Normal user token can update admin order status",
+      "result": {
+        "method": "PUT",
+        "endpoint": "/admin/orders/2/status",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Order status updated"
+        },
+        "bodySummary": "{\"message\":\"Order status updated\"}"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-001",
+      "name": "Normal user token can import products through admin endpoint",
+      "result": {
+        "method": "POST",
+        "endpoint": "/admin/import-products",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Import hoàn tất: 1/1 sản phẩm được thêm",
+          "inserted": 1,
+          "errors": []
+        },
+        "bodySummary": "{\"message\":\"Import hoàn tất: 1/1 sản phẩm được thêm\",\"inserted\":1,\"errors\":[]}"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-001",
+      "name": "Normal user token can read coupons",
+      "result": {
+        "method": "GET",
+        "endpoint": "/coupons",
+        "status": 200,
+        "ok": true,
+        "body": [
+          {
+            "id": 1,
+            "code": "SAVE10",
+            "type": "percent",
+            "discount_value": 10,
+            "min_order_amount": 300000,
+            "expired_at": "2099-12-31",
+            "is_active": 1,
+            "max_uses_per_user": 1
+          },
+          {
+            "id": 2,
+            "code": "BIGBUY",
+            "type": "fixed",
+            "discount_value": 50000,
+            "min_order_amount": 500000,
+            "expired_at": "2099-12-31",
+            "is_active": 1,
+            "max_uses_per_user": 1
+          },
+          {
+            "id": 3,
+            "code": "VIP100",
+            "type": "fixed",
+            "discount_value": 100000,
+            "min_order_amount": 300000,
+            "expired_at": "2099-12-31",
+            "is_active": 1,
+            "max_uses_per_user": 2
+          },
+          {
+            "id": 4,
+            "code": "EXPIRED",
+            "type": "percent",
+            "discount_value": 20,
+            "min_order_amount": 100000,
+            "expired_at": "2020-01-01",
+            "is_active": 1,
+            "max_uses_per_user": 1
+          },
+          {
+            "id": 6,
+            "code": "AD819741",
+            "type": "percent",
+            "discount_value": 10,
+            "min_order_amount": 0,
+            "expired_at": "2027-01-31",
+            "is_active": 1,
+            "max_uses_per_user": 1
+          },
+          {
+            "id": 7,
+            "code": "NU819741",
+            "type": "percent",
+            "discount_value": 10,
+            "min_order_amount": 0,
+            "expired_at": "2027-01-31",
+            "is_active": 1,
+            "max_uses_per_user": 1
+          }
+        ],
+        "bodySummary": "array(6)"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-001",
+      "name": "Normal user token can create coupon through admin endpoint",
+      "result": {
+        "method": "POST",
+        "endpoint": "/admin/coupons",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Coupon created",
+          "id": 8
+        },
+        "bodySummary": "{\"message\":\"Coupon created\",\"id\":8}"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-002",
+      "name": "Basic authorization scheme with admin token is accepted",
+      "result": {
+        "method": "GET",
+        "endpoint": "/admin/users",
+        "status": 200,
+        "ok": true,
+        "body": [
+          {
+            "id": 1,
+            "name": "Admin User",
+            "email": "admin@eshop.com",
+            "role": "admin",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 2,
+            "name": "Test User",
+            "email": "test@eshop.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 3,
+            "name": "FR12 ENV User",
+            "email": "fr12.env.1783432897442@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 4,
+            "name": "FR12 DT Normal",
+            "email": "fr12.dt.normal.1783433819741@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          },
+          {
+            "id": 7,
+            "name": "FR12 Repro Normal",
+            "email": "fr12.repro.normal.1783434003154@example.com",
+            "role": "user",
+            "login_attempts": 0,
+            "locked_until": null,
+            "shipping_address": null
+          }
+        ],
+        "bodySummary": "array(5)"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-003",
+      "name": "Normal user token can create product",
+      "result": {
+        "method": "POST",
+        "endpoint": "/products",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Product created",
+          "id": 16
+        },
+        "bodySummary": "{\"message\":\"Product created\",\"id\":16}"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-003",
+      "name": "Unauthenticated request can delete product",
+      "result": {
+        "method": "DELETE",
+        "endpoint": "/products/14",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Product deleted"
+        },
+        "bodySummary": "{\"message\":\"Product deleted\"}"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-003",
+      "name": "Normal user token can create category",
+      "result": {
+        "method": "POST",
+        "endpoint": "/categories",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Category created",
+          "id": 7
+        },
+        "bodySummary": "{\"message\":\"Category created\",\"id\":7}"
+      },
+      "expected": "401 or 403"
+    },
+    {
+      "bugId": "BUG-004",
+      "name": "Malformed JSON is parsed before access denial on admin coupon endpoint",
+      "result": {
+        "method": "POST",
+        "endpoint": "/admin/coupons",
+        "status": 400,
+        "ok": false,
+        "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Expected property name or &#39;}&#39; in JSON at position 1<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/minhi1/university/software-testing/HW02/eshop-sut/backend/node_modules/body-parser/lib/types/json.js:72:19)<br> &nbsp; &nbsp;at /home/minhi1/university/software-testing/HW02/eshop-sut/backend/node_modules/body-parser/lib/read.js:162:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:206:9)<br> &nbsp; &nbsp;at invokeCallback (/home/minhi1/university/software-testing/HW02/eshop-sut/backend/node_modules/raw-body/index.js:238:16)<br> &nbsp; &nbsp;at done (/home/minhi1/university/software-testing/HW02/eshop-sut/backend/node_modules/raw-body/index.js:227:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/minhi1/university/software-testing/HW02/eshop-sut/backend/node_modules/raw-body/index.js:287:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:524:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1698:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n",
+        "bodySummary": "\"<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Error</title>\\n</head>\\n<body>\\n<pre>SyntaxError: Expected property name or &#39;}&#39; in JSON at position 1<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at "
+      },
+      "expected": "401 or 403 without HTML stack trace"
+    },
+    {
+      "bugId": "BUG-005",
+      "name": "Product update accepts non-numeric ID",
+      "result": {
+        "method": "PUT",
+        "endpoint": "/products/not-a-number",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Product updated"
+        },
+        "bodySummary": "{\"message\":\"Product updated\"}"
+      },
+      "expected": "400 or 404; no update"
+    },
+    {
+      "bugId": "BUG-005",
+      "name": "Product update accepts nonexistent numeric ID",
+      "result": {
+        "method": "PUT",
+        "endpoint": "/products/99999999",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Product updated"
+        },
+        "bodySummary": "{\"message\":\"Product updated\"}"
+      },
+      "expected": "404; no update"
+    },
+    {
+      "bugId": "BUG-005",
+      "name": "Product create accepts missing required body",
+      "result": {
+        "method": "POST",
+        "endpoint": "/products",
+        "status": 200,
+        "ok": true,
+        "body": {
+          "message": "Product created",
+          "id": 17
+        },
+        "bodySummary": "{\"message\":\"Product created\",\"id\":17}"
+      },
+      "expected": "400; no product created"
+    }
+  ]
+}

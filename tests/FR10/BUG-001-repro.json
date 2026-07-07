@@ -1,0 +1,43 @@
+{
+  "bugId": "BUG-001",
+  "feature": "FR-10 - Order State Machine",
+  "runId": 1783430766079,
+  "backendUrl": "http://127.0.0.1:3000",
+  "reproduced": true,
+  "user": {
+    "email": "fr10.bug001.user.1783430766079@example.com",
+    "loginStatus": 200
+  },
+  "adminControl": {
+    "loginStatus": 200,
+    "hasToken": true
+  },
+  "order": {
+    "id": 1,
+    "beforeStatus": "pending",
+    "nonAdminUpdate": {
+      "status": 200,
+      "ok": true,
+      "body": {
+        "message": "Order status updated"
+      }
+    },
+    "afterStatus": "confirmed"
+  },
+  "controls": {
+    "unauthenticatedControl": {
+      "status": 401,
+      "ok": false,
+      "body": {
+        "error": "Unauthorized"
+      }
+    },
+    "invalidTokenControl": {
+      "status": 403,
+      "ok": false,
+      "body": {
+        "error": "Forbidden"
+      }
+    }
+  }
+}

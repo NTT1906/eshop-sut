@@ -1,0 +1,119 @@
+{
+  "evidence": {
+    "apiBaseUrl": "http://localhost:3000/api",
+    "startedAt": "2026-07-07T15:40:08.172Z",
+    "products": [
+      {
+        "id": 1,
+        "name": "iPhone 15 Pro Max",
+        "price": 30000000,
+        "description": "Điện thoại cao cấp của Apple",
+        "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15",
+        "category_id": 1
+      },
+      {
+        "id": 2,
+        "name": "Samsung Galaxy S24 Ultra",
+        "price": 28000000,
+        "description": "Màn hình hiển thị xuất sắc, camera siêu zoom",
+        "imageUrl": "https://placehold.co/300x300/png?text=Samsung+S24",
+        "category_id": 1
+      },
+      {
+        "id": 3,
+        "name": "MacBook Pro M3",
+        "price": 45000000,
+        "description": "Laptop chuyên nghiệp mạnh mẽ",
+        "imageUrl": "https://placehold.co/300x300/png?text=Macbook+Pro",
+        "category_id": 2
+      }
+    ],
+    "finishedAt": "2026-07-07T15:40:08.342Z"
+  },
+  "results": [
+    {
+      "tcId": "BVA-TC001",
+      "expected": "selectedProductId minimum - 1 is rejected.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":0,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Fail"
+    },
+    {
+      "tcId": "BVA-TC002",
+      "expected": "selectedProductId minimum is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC003",
+      "expected": "selectedProductId minimum + 1 is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":2,\"name\":\"Samsung Galaxy S24 Ultra\",\"price\":28000000,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC004",
+      "expected": "selectedProductId nominal value is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":3,\"name\":\"MacBook Pro M3\",\"price\":45000000,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC005",
+      "expected": "selectedQuantity minimum - 1 is rejected.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":0}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Fail"
+    },
+    {
+      "tcId": "BVA-TC006",
+      "expected": "selectedQuantity minimum is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC007",
+      "expected": "selectedQuantity minimum + 1 is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":2}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC008",
+      "expected": "selectedQuantity nominal value is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":3}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC009",
+      "expected": "apiCartItemPrice minimum - 1 is rejected.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":0,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Fail"
+    },
+    {
+      "tcId": "BVA-TC010",
+      "expected": "apiCartItemPrice minimum is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":1,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC011",
+      "expected": "apiCartItemPrice minimum + 1 is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":2,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    },
+    {
+      "tcId": "BVA-TC012",
+      "expected": "apiCartItemPrice nominal value is accepted.",
+      "actualApi": "POST HTTP 200; cart=[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":1}]; response={\"message\":\"Added to cart\"}",
+      "actualUi": "Not executed - API-only BVA case.",
+      "status": "Pass"
+    }
+  ]
+}

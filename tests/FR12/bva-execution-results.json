@@ -1,0 +1,13 @@
+{
+  "feature": "FR-12 - Access Control",
+  "technique": "Boundary Value Analysis",
+  "status": "Completed",
+  "summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "notExecuted": 0
+  },
+  "reason": "BVA-01 found no explicit numeric, string-length, date/time, or ordered input boundaries for FR-12. All FR-12 behavior-driving domains are categorical and were covered by Domain Testing.",
+  "results": []
+}

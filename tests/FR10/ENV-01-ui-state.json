@@ -1,0 +1,314 @@
+{
+  "feature": "FR-10 - Order State Machine",
+  "frontendWebUrl": "http://localhost:5173",
+  "frontendAdminUrl": "http://localhost:5174",
+  "backendUrl": "http://localhost:3000",
+  "checks": [
+    {
+      "name": "Registered user login through public API",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Admin login through public API",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "testData": {
+    "runId": 1783417223397,
+    "orders": [
+      {
+        "orderId": 6,
+        "targetStatus": "pending",
+        "createStatus": 200,
+        "createOk": true,
+        "transitions": []
+      },
+      {
+        "orderId": 7,
+        "targetStatus": "confirmed",
+        "createStatus": 200,
+        "createOk": true,
+        "transitions": [
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          }
+        ]
+      },
+      {
+        "orderId": 8,
+        "targetStatus": "shipping",
+        "createStatus": 200,
+        "createOk": true,
+        "transitions": [
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          },
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          }
+        ]
+      },
+      {
+        "orderId": 9,
+        "targetStatus": "canceled",
+        "createStatus": 200,
+        "createOk": true,
+        "transitions": [
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          }
+        ]
+      },
+      {
+        "orderId": 10,
+        "targetStatus": "delivered",
+        "createStatus": 200,
+        "createOk": true,
+        "transitions": [
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          },
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          },
+          {
+            "status": 200,
+            "ok": true,
+            "body": {
+              "message": "Order status updated"
+            }
+          }
+        ]
+      }
+    ],
+    "user": {
+      "email": "fr10.env.1783417223397@example.com",
+      "status": 200,
+      "ok": true
+    }
+  },
+  "registeredUser": {
+    "url": "http://localhost:5173/profile",
+    "screenshot": "tests/FR10/screenshots/ENV-registered-user-orders.png",
+    "rows": [
+      {
+        "cells": [
+          "#10",
+          "7/7/2026",
+          "140,000 ₫",
+          "Đã giao",
+          ""
+        ],
+        "buttons": []
+      },
+      {
+        "cells": [
+          "#9",
+          "7/7/2026",
+          "130,000 ₫",
+          "Đã hủy",
+          ""
+        ],
+        "buttons": []
+      },
+      {
+        "cells": [
+          "#8",
+          "7/7/2026",
+          "120,000 ₫",
+          "Đang giao",
+          "Hủy đơn"
+        ],
+        "buttons": [
+          "Hủy đơn"
+        ]
+      },
+      {
+        "cells": [
+          "#7",
+          "7/7/2026",
+          "110,000 ₫",
+          "Đã xác nhận",
+          "Hủy đơn"
+        ],
+        "buttons": [
+          "Hủy đơn"
+        ]
+      },
+      {
+        "cells": [
+          "#6",
+          "7/7/2026",
+          "100,000 ₫",
+          "Chờ xác nhận",
+          "Hủy đơn"
+        ],
+        "buttons": [
+          "Hủy đơn"
+        ]
+      }
+    ]
+  },
+  "admin": {
+    "url": "http://localhost:5174/",
+    "screenshot": "tests/FR10/screenshots/ENV-admin-orders.png",
+    "rows": [
+      {
+        "cells": [
+          "#10",
+          "FR10 ENV User",
+          "140,000 ₫",
+          "FR10 delivered address 1783417223397",
+          "Đã giao",
+          ""
+        ],
+        "buttons": []
+      },
+      {
+        "cells": [
+          "#9",
+          "FR10 ENV User",
+          "130,000 ₫",
+          "FR10 canceled address 1783417223397",
+          "Đã hủy",
+          "Đánh dấu Đã giao"
+        ],
+        "buttons": [
+          "Đánh dấu Đã giao"
+        ]
+      },
+      {
+        "cells": [
+          "#8",
+          "FR10 ENV User",
+          "120,000 ₫",
+          "FR10 shipping address 1783417223397",
+          "Đang giao",
+          "Hoàn thành"
+        ],
+        "buttons": [
+          "Hoàn thành"
+        ]
+      },
+      {
+        "cells": [
+          "#7",
+          "FR10 ENV User",
+          "110,000 ₫",
+          "FR10 confirmed address 1783417223397",
+          "Đã xác nhận",
+          "Giao hàng\nHủy"
+        ],
+        "buttons": [
+          "Giao hàng",
+          "Hủy"
+        ]
+      },
+      {
+        "cells": [
+          "#6",
+          "FR10 ENV User",
+          "100,000 ₫",
+          "FR10 pending address 1783417223397",
+          "Chờ xác nhận",
+          "Xác nhận\nHủy"
+        ],
+        "buttons": [
+          "Xác nhận",
+          "Hủy"
+        ]
+      },
+      {
+        "cells": [
+          "#5",
+          "FR10 ENV User",
+          "140,000 ₫",
+          "FR10 delivered address 1783417207107",
+          "Đã giao",
+          ""
+        ],
+        "buttons": []
+      },
+      {
+        "cells": [
+          "#4",
+          "FR10 ENV User",
+          "130,000 ₫",
+          "FR10 canceled address 1783417207107",
+          "Đã hủy",
+          "Đánh dấu Đã giao"
+        ],
+        "buttons": [
+          "Đánh dấu Đã giao"
+        ]
+      },
+      {
+        "cells": [
+          "#3",
+          "FR10 ENV User",
+          "120,000 ₫",
+          "FR10 shipping address 1783417207107",
+          "Đang giao",
+          "Hoàn thành"
+        ],
+        "buttons": [
+          "Hoàn thành"
+        ]
+      },
+      {
+        "cells": [
+          "#2",
+          "FR10 ENV User",
+          "110,000 ₫",
+          "FR10 confirmed address 1783417207107",
+          "Đã xác nhận",
+          "Giao hàng\nHủy"
+        ],
+        "buttons": [
+          "Giao hàng",
+          "Hủy"
+        ]
+      },
+      {
+        "cells": [
+          "#1",
+          "FR10 ENV User",
+          "100,000 ₫",
+          "FR10 pending address 1783417207107",
+          "Chờ xác nhận",
+          "Xác nhận\nHủy"
+        ],
+        "buttons": [
+          "Xác nhận",
+          "Hủy"
+        ]
+      }
+    ]
+  }
+}

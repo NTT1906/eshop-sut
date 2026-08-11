@@ -1,4 +1,13 @@
 {
+  "scripts": {
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
+    "test:all": "npx playwright test",
+    "test:fr05": "npx playwright test tests/fr05-product-listing.spec.js",
+    "test:fr09": "npx playwright test tests/fr09-discount-coupons.spec.js",
+    "test:fr16": "npx playwright test tests/fr16-product-import.spec.js"
+  },
   "devDependencies": {
     "@playwright/test": "^1.61.1"
   }

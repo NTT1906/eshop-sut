@@ -1,0 +1,22 @@
+{
+  "searchKeywords": [
+    { "keyword": "Laptop", "expectedMinResults": 0, "description": "Search for existing product" },
+    { "keyword": "iPhone", "expectedMinResults": 0, "description": "Search for existing product" },
+    { "keyword": "Samsung", "expectedMinResults": 0, "description": "Search for existing product" },
+    { "keyword": "xyz123nonexistent", "expectedMinResults": 0, "description": "Search for non-existent product" },
+    { "keyword": "<script>alert('xss')</script>", "expectedMinResults": 0, "description": "XSS test in search" },
+    { "keyword": "a", "expectedMinResults": 0, "description": "Single character search" },
+    { "keyword": "   ", "expectedMinResults": 0, "description": "Whitespace only search" },
+    { "keyword": "LAPTOP", "expectedMinResults": 0, "description": "Case insensitive search" },
+    { "keyword": "laptop iphone", "expectedMinResults": 0, "description": "Multiple words search" },
+    { "keyword": "12345", "expectedMinResults": 0, "description": "Numeric search" },
+    { "keyword": "!@#$%", "expectedMinResults": 0, "description": "Special characters search" },
+    { "keyword": "", "expectedMinResults": 1, "description": "Empty search shows all products" }
+  ],
+  "productValidation": {
+    "minPrice": 0,
+    "requireAltText": true,
+    "requireImage": true,
+    "requireH1": true
+  }
+}

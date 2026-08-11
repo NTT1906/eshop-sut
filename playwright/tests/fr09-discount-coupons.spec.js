@@ -28,11 +28,12 @@ test.describe('FR-09: Discount Coupons', () => {
 
   // TC01: Verify coupon input field exists on checkout page
   test('TC01 - Coupon input field exists on checkout page', async ({ page }) => {
-    // Login first
+    // Login first - inputs have no placeholder, use nth selector
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -60,9 +61,10 @@ test.describe('FR-09: Discount Coupons', () => {
   test('TC02 - Apply valid percent coupon (SAVE10)', async ({ page }) => {
     // Login
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -76,6 +78,10 @@ test.describe('FR-09: Discount Coupons', () => {
     // Go to checkout
     await page.goto(`${BASE_URL}/checkout`);
     await page.waitForLoadState('networkidle');
+    
+    // Set total amount to meet minimum order (SAVE10 requires 300,000)
+    const totalInput = page.locator('input[type="number"]');
+    await totalInput.fill('500000');
     
     // Enter coupon code
     const couponInput = page.locator('input[placeholder="Nhập mã giảm giá..."]');
@@ -96,9 +102,10 @@ test.describe('FR-09: Discount Coupons', () => {
   test('TC03 - Apply expired coupon (EXPIRED)', async ({ page }) => {
     // Login
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -112,6 +119,10 @@ test.describe('FR-09: Discount Coupons', () => {
     // Go to checkout
     await page.goto(`${BASE_URL}/checkout`);
     await page.waitForLoadState('networkidle');
+    
+    // Set total amount to meet minimum order
+    const totalInput = page.locator('input[type="number"]');
+    await totalInput.fill('500000');
     
     // Enter expired coupon code
     const couponInput = page.locator('input[placeholder="Nhập mã giảm giá..."]');
@@ -132,9 +143,10 @@ test.describe('FR-09: Discount Coupons', () => {
   test('TC04 - Apply non-existent coupon', async ({ page }) => {
     // Login
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -148,6 +160,10 @@ test.describe('FR-09: Discount Coupons', () => {
     // Go to checkout
     await page.goto(`${BASE_URL}/checkout`);
     await page.waitForLoadState('networkidle');
+    
+    // Set total amount to meet minimum order
+    const totalInput = page.locator('input[type="number"]');
+    await totalInput.fill('500000');
     
     // Enter non-existent coupon code
     const couponInput = page.locator('input[placeholder="Nhập mã giảm giá..."]');
@@ -168,9 +184,10 @@ test.describe('FR-09: Discount Coupons', () => {
   test('TC05 - Apply coupon with empty code', async ({ page }) => {
     // Login
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -189,24 +206,19 @@ test.describe('FR-09: Discount Coupons', () => {
     const couponInput = page.locator('input[placeholder="Nhập mã giảm giá..."]');
     await couponInput.fill('');
     
-    // Click apply button
+    // Verify apply button is disabled when input is empty
     const applyButton = page.locator('button:text("Áp dụng")');
-    await applyButton.click();
-    
-    await page.waitForTimeout(1000);
-    
-    // Verify apply button is disabled or no action occurs
-    const pageContent = await page.content();
-    expect(pageContent).toBeTruthy();
+    await expect(applyButton).toBeDisabled();
   });
 
   // TC06: Verify discount amount is calculated correctly for percent coupon
   test('TC06 - Discount amount calculated correctly for percent coupon', async ({ page }) => {
     // Login
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -220,6 +232,10 @@ test.describe('FR-09: Discount Coupons', () => {
     // Go to checkout
     await page.goto(`${BASE_URL}/checkout`);
     await page.waitForLoadState('networkidle');
+    
+    // Set total amount to meet minimum order (SAVE10 requires 300,000)
+    const totalInput = page.locator('input[type="number"]');
+    await totalInput.fill('500000');
     
     // Enter coupon code
     const couponInput = page.locator('input[placeholder="Nhập mã giảm giá..."]');
@@ -240,9 +256,10 @@ test.describe('FR-09: Discount Coupons', () => {
   test('TC07 - Final amount calculated correctly', async ({ page }) => {
     // Login
     await page.goto(`${BASE_URL}/login`);
-    await page.fill('input[type="email"]', 'test@eshop.com');
-    await page.fill('input[type="password"]', 'Test1234!');
-    await page.click('button[type="submit"]');
+    const inputs = page.locator('form input[type="text"]');
+    await inputs.nth(0).fill('test@eshop.com');
+    await inputs.nth(1).fill('Test1234!');
+    await page.click('button:text("Sign In")');
     await page.waitForLoadState('networkidle');
     
     // Add product to cart
@@ -256,6 +273,10 @@ test.describe('FR-09: Discount Coupons', () => {
     // Go to checkout
     await page.goto(`${BASE_URL}/checkout`);
     await page.waitForLoadState('networkidle');
+    
+    // Set total amount to meet minimum order (SAVE10 requires 300,000)
+    const totalInput = page.locator('input[type="number"]');
+    await totalInput.fill('500000');
     
     // Enter coupon code
     const couponInput = page.locator('input[placeholder="Nhập mã giảm giá..."]');

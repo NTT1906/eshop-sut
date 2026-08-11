@@ -26,7 +26,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC01: Verify CSV import section exists in admin panel
   test('TC01 - CSV import section exists in admin panel', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -44,7 +44,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC02: Verify file upload input exists
   test('TC02 - File upload input exists', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -62,7 +62,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC03: Verify template download link exists
   test('TC03 - Template download link exists', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -80,7 +80,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC04: Upload valid CSV file
   test('TC04 - Upload valid CSV file', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -104,7 +104,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC05: Import valid CSV file
   test('TC05 - Import valid CSV file', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -134,7 +134,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC06: Upload CSV file with invalid data
   test('TC06 - Upload CSV file with invalid data', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -158,7 +158,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC07: Import CSV file with validation errors
   test('TC07 - Import CSV file with validation errors', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -307,7 +307,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC13: Verify import button shows count of products
   test('TC13 - Import button shows count of products', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -333,7 +333,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC14: Verify preview table shows all columns
   test('TC14 - Preview table shows all columns', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -363,7 +363,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC15: Verify import button is disabled before file selection
   test('TC15 - Import button is disabled before file selection', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');
@@ -381,7 +381,7 @@ test.describe('FR-16: Product Import from CSV', () => {
 
   // TC16: Verify CSV file with comma-containing fields
   test('TC16 - Verify CSV file with comma-containing fields', async ({ page }) => {
-    // Login as admin
+    // Login as admin - use placeholder selectors (SUT has type="text" bug)
     await page.goto(BASE_URL);
     await page.fill('input[placeholder="Email"]', 'admin@eshop.com');
     await page.fill('input[type="password"]', 'Admin123!');

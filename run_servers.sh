@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Read setup_guide.md before using this script
-
-
-
 BASE_DIR="$(pwd)"
 
 killall node 2>/dev/null
